@@ -1,0 +1,9 @@
+llama_index
+langchain_community
+llama-index-embeddings-langchain
+sentence-transformers
+bitsandbytes
+accelerate
+faiss-cpu
+llama-index-vector-stores-faiss
+langchain-huggingface
