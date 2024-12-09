@@ -1,15 +1,28 @@
-from llama_index.core.schema import MetadataMode
+from typing import List
 
+from llama_index.core.schema import MetadataMode, NodeWithScore
 from model import Llama3Generator, load_model_and_tokenizer, settings
 from vector_store import FaissVS
 
 
 class MINI:
+    """
+    Class for proviiding RAG based on MiNI lecture notes
+
+    """
+
     def __init__(
         self,
-        vector_store_pth="vector_store",
-        model_name="meta-llama/Meta-Llama-3-8B-Instruct",
+        vector_store_pth: str = "vector_store",
+        model_name: str = "meta-llama/Meta-Llama-3-8B-Instruct",
     ):
+        """
+        Constructor for MINI class
+
+        Args:
+            vector_store_pth (str): Path to the vector store
+            model_name (str): Model name to be used for
+        """
         self.vector_store = FaissVS()
         self.model, self.tokenizer = load_model_and_tokenizer(model_name=model_name)
         self.llm_settings = settings()
@@ -18,10 +31,25 @@ class MINI:
             similarity_top_k=2, vector_store_path=vector_store_pth
         )
 
-    def change_k_similarity(self, k):
+    def change_k_similarity(self, k: int):
+        """
+        Change the value of k for similarity_top_k
+
+        Args:
+            k (int): Number of top k similar documents to be retrieved
+        """
         self.retriever = self.vector_store.get_retriever(similarity_top_k=k)
 
-    def generate_answer(self, prompt):
+    def generate_answer(self, prompt: str) -> str:
+        """
+        Generate answer based on the prompt
+
+        Args:
+            prompt (str): Prompt for generating the answer
+
+        Returns:
+            str: Generated answer
+        """
         response = self.generator.generate_simple(
             prompt,
             self.llm_settings,
@@ -29,7 +57,16 @@ class MINI:
         )
         return response
 
-    def format_sources(self, context):
+    def format_sources(self, context: List[NodeWithScore]) -> List[dict]:
+        """
+        Format the sources in the context
+
+        Args:
+            context (List[NodeWithScore]): List of nodes with scores
+
+        Returns:
+            List[dict]: List of formatted sources
+        """
         return [
             {
                 **source.metadata,
@@ -39,13 +76,32 @@ class MINI:
             for source in context
         ]
 
-    def format_context(self, context):
+    def format_context(self, context: List[NodeWithScore]) -> str:
+        """
+        Format the context
+
+        Args:
+            context (List[NodeWithScore]): List of nodes with scores
+
+        Returns:
+            str: Formatted context
+        """
         return "\n".join(
             f"Excerpt {i}:\n{node.get_content(metadata_mode=MetadataMode.LLM).strip()}\n"
             for i, node in enumerate(context, 1)
         )
 
-    def query(self, question):
+    def query(self, question: str) -> tuple:
+        """
+        Query the model for the given question
+
+        Args:
+            question (str): Question to be queried
+
+        Returns:
+            tuple: Tuple containing the answer and the sources
+        """
+
         context = self.retriever.retrieve(question)
         context_text = self.format_context(context)
         sources = self.format_sources(context)

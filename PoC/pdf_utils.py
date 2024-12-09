@@ -1,12 +1,23 @@
 import os
 import pickle as pkl
 from pathlib import Path
+from typing import List
 
+from llama_index.core.schema import Document
 from llama_index.readers.file import PyMuPDFReader
 from tqdm import tqdm
 
 
-def post_load_process_pdf(documents_path):
+def post_load_process_pdf(documents_path: str) -> List[Document]:
+    """
+    Applies post-load processing to the documents.
+
+    Args:
+        documents_path (str): Path to the pickle file containing the documents.
+
+    Returns:
+        List[Document]: List of documents.
+    """
     with open(documents_path, "rb") as file:
         documents = pkl.load(file)
 
@@ -18,7 +29,17 @@ def post_load_process_pdf(documents_path):
     return documents
 
 
-def extract_pdfs(pdf_dir, save_pkl):
+def extract_pdfs(pdf_dir: str, save_pkl: str) -> List[Document]:
+    """
+    Extracts text from PDF files and saves it in a pickle file.
+
+    Args:
+        pdf_dir (str): Directory containing PDF files.
+        save_pkl (str): Path to save the pickle file.
+
+    Returns:
+        List[Document]: List of documents.
+    """
     reader = PyMuPDFReader()
     pdf_lib_path = Path(pdf_dir)
 
