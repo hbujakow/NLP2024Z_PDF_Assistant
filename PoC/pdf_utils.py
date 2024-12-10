@@ -22,8 +22,6 @@ def post_load_process_pdf(documents_path: str) -> List[Document]:
         documents = pkl.load(file)
 
     for document in documents:
-        document.excluded_llm_metadata_keys = ["page_label"]
-        document.excluded_embed_metadata_keys = ["page_label"]
         document.text = document.text.strip()
 
     return documents
