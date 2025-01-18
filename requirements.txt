@@ -12,3 +12,9 @@ langchain-huggingface
 PyMuPDF
 tenacity
 notebook
+flask
+streamlit
+streamlit-pdf-viewer
+pdf2image
+st-star-rating
+streamlit-text-rating

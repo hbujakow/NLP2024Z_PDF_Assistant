@@ -1,5 +1,31 @@
-This project is an interactive research assistant that allows users to query multiple PDFs for specific answers by retrieving relevant document sections. The assistant will include an interface where users can view and navigate to specific pages of PDFs or PowerPoints, enhancing comprehension with targeted document previews.
+This project provides an **interactive research assistant** designed to enhance your document comprehension and navigation. The assistant allows users to query multiple PDFs for specific answers, retrieving relevant document sections. It includes an intuitive interface for viewing and navigating to specific pages of PDFs or PowerPoint files, offering targeted previews for improved understanding.
 
-To run the code:
-- install required packages: ```pip install -r requirements```
-- run ```demo.py``` notebook
+## Getting Started
+
+### Prerequisites
+
+Ensure you have all required dependencies installed. You can do this by running:
+```bash
+pip install -r requirements.txt
+```
+
+### Setup
+
+1. Place the `vector_store` directory (for storing vectorized document representations) and the `nlp_data` directory (containing your PDFs) in the project's root directory.
+2. Ensure all necessary files are available in these directories.
+
+### Running the Application
+
+1. Start the Flask API:
+   ```bash
+   python backend.py
+   ```
+   This will launch the API on `localhost:5003`.
+
+2. Run the Streamlit application:
+   ```bash
+   streamlit run app.py
+   ```
+   The interface will be available at `localhost:8501` on your local machine.
+
+3. Optionally, explore the `demo.py` notebook for additional functionalities and demonstrations of the project's capabilities.
