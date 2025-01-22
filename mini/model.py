@@ -19,7 +19,7 @@ def config():
 
 def load_model_and_tokenizer(
     model_name: str = "meta-llama/Meta-Llama-3-8B-Instruct",
-    device_map: str = "cuda:2",
+    device_map: str = "cuda",
     token=None,
 ):
     """
@@ -73,7 +73,7 @@ class Llama3Generator:
         self,
         model: AutoModelForCausalLM,
         tokenizer: AutoTokenizer,
-        device: str = "cuda:2",
+        device: str = "cuda",
     ):
         """
         Constructor for the Llama3Generator class.
@@ -112,7 +112,7 @@ class Llama3Generator:
             top_p=gen_settings.get("top_p", 0.9),
             top_k=gen_settings.get("top_k", 50),
             repetition_penalty=gen_settings.get("repetition_penalty", 1.2),
-            do_sample=gen_settings.get("do_sample", True),
+            do_sample=gen_settings.get("do_sample", True)
         )
 
         response = self.tokenizer.decode(output[0], skip_special_tokens=True)

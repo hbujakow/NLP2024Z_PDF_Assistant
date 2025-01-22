@@ -2,8 +2,8 @@ from typing import List
 
 from llama_index.core.schema import MetadataMode, NodeWithScore
 
-from model import Llama3Generator, load_model_and_tokenizer, settings
-from vector_store import FaissVS
+from PoC.model import Llama3Generator, load_model_and_tokenizer, settings
+from PoC.vector_store import FaissVS
 
 
 class MINI:

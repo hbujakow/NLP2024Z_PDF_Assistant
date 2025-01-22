@@ -18,3 +18,4 @@ streamlit-pdf-viewer
 pdf2image
 st-star-rating
 streamlit-text-rating
+ragas

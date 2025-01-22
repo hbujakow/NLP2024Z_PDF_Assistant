@@ -20,7 +20,7 @@ class FaissVS:
     Faiss Vector Store class to create and load vector store
     """
 
-    def __init__(self, embd_model_device: str = "cuda:2") -> None:
+    def __init__(self, embd_model_device: str = "cuda") -> None:
         """
         Initialize FaissVS class
 
