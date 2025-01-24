@@ -95,7 +95,7 @@ def main():
     question = st.text_area(
         "Enter text:",
         value=question,
-        placeholder="who is Jan Łukasiewicz?",
+        placeholder="What do you want to know?",
         key="input_text",
     )
     st.session_state["question"] = question

@@ -29,3 +29,11 @@ pip install -r requirements.txt
    The interface will be available at `localhost:8501` on your local machine.
 
 3. Optionally, explore the `demo.py` notebook for additional functionalities and demonstrations of the project's capabilities.
+
+### RAG Evaluation
+
+1. Create evaluation dataset using the code provided in `prepare_ragas_set.ipynb`.
+
+2. Run the code in `run_ragas.py`.
+
+3. The evaluation results will be saved in `mini_result.txt`.
